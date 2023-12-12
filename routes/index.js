@@ -37,8 +37,17 @@ router.use((req, res, next) => {
   } else {
     // User isn't login yet
     res.redirect('/')
-  }
+  };
 });
+
+
+// Process: Logout
+router.get('/logout', (req, res) => {
+  req.session.destroy((err) => {
+    if (err) throw err;
+    res.redirect('/')
+  })
+})
 
 
 // Page: Dashboard
@@ -46,16 +55,16 @@ router.get('/dashboard', (req, res) => {
   res.render('dashboard', {
     title: 'Dashboard',
     layout: 'layouts/main-layout'
-  })
-})
+  });
+});
 
 // Page: Dashboard
 router.get('/detail', (req, res) => {
   res.render('detail', {
     title: 'Detail',
     layout: 'layouts/main-layout'
-  })
-})
+  });
+});
 
 
 module.exports = router;
